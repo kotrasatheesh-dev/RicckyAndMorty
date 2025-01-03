@@ -1,4 +1,4 @@
-package com.example.common.module
+package module
 
 import com.apollographql.apollo.ApolloClient
 import dagger.Module
