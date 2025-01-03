@@ -1,6 +1,7 @@
 package repository
 
-import com.example.data.GetCharactersQuery
+
+import com.example.common.GetCharactersQuery
 import kotlinx.coroutines.flow.Flow
 
 interface CharactersRepository {

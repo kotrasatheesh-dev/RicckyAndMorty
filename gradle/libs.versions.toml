@@ -17,6 +17,7 @@ constraintlayout = "2.1.4"
 apolloRuntime = "4.0.1"
 coilCompose = "2.4.0"
 dagger = "2.52"
+apollo = "4.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +49,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 detekt-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detect" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-apollo = {id = "com.apollographql.apollo",version = "4.0.1"}
+apollo = { id = "com.apollographql.apollo", version.ref = "apollo" }
 ksp = {id = "com.google.devtools.ksp",version = "2.0.0-1.0.22"}
 
