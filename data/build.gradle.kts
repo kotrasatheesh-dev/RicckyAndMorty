@@ -48,11 +48,11 @@ dependencies {
 }
 
 apollo {
-    service("rickAndMorty"){
-        packageName.set("com.example.common")
+    service("rickAndMorty") {
+        packageName.set("com.example.data")
         introspection {
             endpointUrl.set("https://rickandmortyapi.com/graphql")
-            schemaFile.set(file("src/main/graphql/schema.sdl"))
+            schemaFile.set(file("src/main/graphql/schema.graphqls"))
         }
     }
 }
