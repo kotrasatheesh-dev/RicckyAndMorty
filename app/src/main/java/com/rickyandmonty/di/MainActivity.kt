@@ -10,15 +10,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.rickyandmonty.di.theme.RickyAndMontyTheme
+import com.rickyandmonty.di.theme.rickAndMortyTheme
 
+// Ensure the correct theme name here
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            RickyAndMontyTheme {
+            rickAndMortyTheme   {  // Corrected theme name
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MyGreeting(
                         name = "Android",
