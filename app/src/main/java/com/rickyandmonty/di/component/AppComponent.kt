@@ -1,6 +1,5 @@
 package com.rickyandmonty.di.component
 
-import androidx.lifecycle.ViewModelProvider
 import com.example.common.module.ApolloModule
 import com.example.data.di.CharacterModule
 import com.rickyandmonty.di.MainActivity
@@ -11,5 +10,4 @@ import javax.inject.Singleton
 @Component(modules = [CharacterModule::class, ApolloModule::class])
 interface AppComponent {
     fun inject(activity: MainActivity)
-
 }
