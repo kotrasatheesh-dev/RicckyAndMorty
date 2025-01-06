@@ -4,13 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.rickyandmonty.di.theme.rickAndMortyTheme
+import com.rickyandmonty.di.theme.RickAndMortyTheme
 
 // Ensure the correct theme name here
 
@@ -19,17 +16,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            rickAndMortyTheme   {  // Corrected theme name
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MyGreeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            RickAndMortyTheme   {  // Corrected theme name
+
                 }
             }
         }
     }
-}
 
 @Composable
 fun MyGreeting(name: String, modifier: Modifier = Modifier) {
