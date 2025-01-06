@@ -1,4 +1,4 @@
-package com.example.rickandmorty
+package com.rickyandmonty
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith
