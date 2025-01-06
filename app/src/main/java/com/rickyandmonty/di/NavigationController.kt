@@ -9,13 +9,13 @@ import com.rickyandmonty.di.utils.NavigationRoutes
 @Composable
 fun NavigationController(
     navController: NavHostController,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,  // Add default value for modifier
 ) {
     NavHost(
         navController,
         NavigationRoutes.AllCharacters.name,
         modifier = modifier,
     ) {
-        //write code here
+        // Write code here
     }
 }

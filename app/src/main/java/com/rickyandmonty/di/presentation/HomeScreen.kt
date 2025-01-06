@@ -10,13 +10,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.rickandmorty.di.R
 import com.rickyandmonty.di.NavigationController
 
-
-
 @Composable
-fun HomesScreen() {
+fun HomesScreen(modifier: Modifier = Modifier) {  // Add the modifier parameter with a default value
     val navController = rememberNavController()
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),  // Use the passed modifier here
         topBar = { RickAndMortyAppBar(stringResource(R.string.app_name)) },
         content = { innerPadding ->
             NavigationController(navController, Modifier.padding(innerPadding))
