@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.apollo)
     alias(libs.plugins.ksp)
@@ -13,19 +13,28 @@ android {
         minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -36,12 +45,13 @@ dependencies {
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
 }
+
 apollo {
-    service("rickAndMorty") {
-        packageName.set("com.example.common")
+    service("rickAndMorty"){
+        packageName.set("com.exmple.rickandmorty")
         introspection {
             endpointUrl.set("https://rickandmortyapi.com/graphql")
-            schemaFile.set(file("src/main/graphql/schema.graphqls"))
+            schemaFile.set(file("common/src/main/graphql/schema.sdl"))
         }
     }
 }
