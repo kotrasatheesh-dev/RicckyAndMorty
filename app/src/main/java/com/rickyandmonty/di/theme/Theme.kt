@@ -23,7 +23,8 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun rickAndMortyTheme(
+@Suppress("ComposableNaming")
+fun RickAndMortyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true, // Dynamic color is available on Android 12+
     content: @Composable () -> Unit
