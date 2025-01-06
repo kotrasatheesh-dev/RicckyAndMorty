@@ -14,15 +14,11 @@ import com.rickyandmonty.R
 fun HomesScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     Scaffold(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),  // Use the passed modifier here
         topBar = { RickAndMortyAppBar(stringResource(R.string.app_name)) },
         content = { innerPadding ->
-            NavigationController(
-                navController = navController,
-                modifier = Modifier.padding(innerPadding)
-            )
+            NavigationController(navController, Modifier.padding(innerPadding))
         },
     )
 }
-
 
