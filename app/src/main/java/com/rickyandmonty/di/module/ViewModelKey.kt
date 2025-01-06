@@ -1,4 +1,4 @@
-package com.example.rickandmorty.data.di.module
+package com.rickyandmonty.di.module
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

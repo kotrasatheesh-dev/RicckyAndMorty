@@ -1,15 +1,15 @@
-package com.example.rickandmorty.presentation
+package com.rickyandmonty.di.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.presentation.uistate.UiState
+import com.rickyandmonty.di.presentation.viewState.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import usecases.CharacterUseCase
+import com.example.domain.domain.usecase.usecase.CharacterUseCase
 import javax.inject.Inject
 
 class CharactersViewModel
@@ -17,8 +17,8 @@ class CharactersViewModel
     constructor(
         private val charactersUseCase: CharacterUseCase,
     ) : ViewModel() {
-        private val _charactersState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Empty)
-        val charactersState: StateFlow<UiState> get() = _charactersState
+        private val _charactersState: MutableStateFlow<ViewState> = MutableStateFlow(ViewState.Empty)
+        val charactersState: StateFlow<ViewState> get() = _charactersState
 
         init {
             fetchData()
@@ -29,10 +29,10 @@ class CharactersViewModel
                 charactersUseCase
                     .invokeCharacters()
                     .onStart {
-                        _charactersState.emit(UiState.Loading)
-                    }.catch { _charactersState.emit(UiState.Empty) }
+                        _charactersState.emit(ViewState.Loading)
+                    }.catch { _charactersState.emit(ViewState.Empty) }
                     .collect {
-                        _charactersState.emit(UiState.Success(charactersUseCase.invokeCharacters()))
+                        _charactersState.emit(ViewState.Success(charactersUseCase.invokeCharacters()))
                     }
             }
         }

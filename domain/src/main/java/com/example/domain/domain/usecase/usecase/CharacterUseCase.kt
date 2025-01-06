@@ -1,4 +1,4 @@
-package usecases
+package com.example.domain.domain.usecase.usecase
 
 import androidx.paging.PagingData
 import com.example.common.GetCharactersQuery

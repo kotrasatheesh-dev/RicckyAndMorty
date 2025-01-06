@@ -1,12 +1,10 @@
-package com.example.rickandmorty
+package com.rickyandmonty.di
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import com.example.rickandmorty.presentation.characters.AllCharacters
-import com.example.rickandmorty.utills.NavigationRoutes
+import com.rickyandmonty.di.utils.NavigationRoutes
 
 @Composable
 fun NavigationController(
@@ -18,10 +16,6 @@ fun NavigationController(
         NavigationRoutes.AllCharacters.name,
         modifier = modifier,
     ) {
-        composable(NavigationRoutes.AllCharacters.name) {
-            AllCharacters()
-        }
-        composable(NavigationRoutes.CharacterDetails.name) {
-        }
+        //write code here
     }
 }

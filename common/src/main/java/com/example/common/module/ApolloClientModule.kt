@@ -6,7 +6,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-object ApolloModule {
+object ApolloClientModule {
 
     @Provides
     @Singleton

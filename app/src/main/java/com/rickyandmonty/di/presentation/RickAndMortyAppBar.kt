@@ -1,4 +1,4 @@
-package com.example.rickandmorty.presentation
+package com.rickyandmonty.di.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

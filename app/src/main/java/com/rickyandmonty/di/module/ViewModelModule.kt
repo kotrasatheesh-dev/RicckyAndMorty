@@ -1,9 +1,9 @@
-package com.example.rickandmorty.data.di.module
+package com.rickyandmonty.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.rickandmorty.data.di.viewmodel.ViewModelFactoryProvider
-import com.example.rickandmorty.presentation.CharactersViewModel
+import com.rickyandmonty.di.viewmodel.ViewModelFactoryProvider
+import com.rickyandmonty.di.presentation.CharactersViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
