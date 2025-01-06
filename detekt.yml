@@ -10,7 +10,7 @@ build:
     - "build/**"
     - "**/generated/**"
     - "**/apollo/**"
-    - "**/app/src/main/java/com/example/ui/theme/theme.kt"
+    - "**/app/src/main/java/com/rickyandmonty/di/theme/Theme.kt"
 
 config:
   validation: true
