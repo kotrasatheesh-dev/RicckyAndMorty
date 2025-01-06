@@ -1,4 +1,4 @@
-package com.example.domain.domain.repository
+package com.example.domain.domain.repository.repository
 
 import com.example.common.GetCharactersQuery
 import kotlinx.coroutines.flow.Flow
