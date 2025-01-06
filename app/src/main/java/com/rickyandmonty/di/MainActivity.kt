@@ -1,12 +1,10 @@
-package com.example.rickandmorty
+package com.rickyandmonty.di
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.rickyandmonty.di.HomesScreen
 import com.rickyandmonty.di.theme.RickAndMortyTheme
-import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.presentation.navigation
+package com.rickyandmonty.di.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -6,10 +6,6 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun NavigationController(
-    navController: NavHostController,
-    modifier: Modifier,
 ) {
-
-
-
+    // Placeholder for navigation logic, to be implemented later
 }

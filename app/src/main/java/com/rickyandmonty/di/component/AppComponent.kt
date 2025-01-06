@@ -1,15 +1,14 @@
-package com.example.rickandmorty.data.di.component
+package com.rickyandmonty.di.component
 
 import androidx.lifecycle.ViewModelProvider
 import com.example.common.module.ApolloModule
 import com.example.data.di.CharacterModule
-import com.example.rickandmorty.MainActivity
-import com.example.rickandmorty.data.di.module.ViewModelModule
+import com.rickyandmonty.di.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [CharacterModule::class, ViewModelModule::class, ApolloModule::class])
+@Component(modules = [CharacterModule::class, ApolloModule::class])
 interface AppComponent {
     fun inject(activity: MainActivity)
 
