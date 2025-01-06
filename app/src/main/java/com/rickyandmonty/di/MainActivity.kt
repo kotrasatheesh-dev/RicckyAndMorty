@@ -7,12 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import com.rickyandmonty.di.theme.RickAndMortyTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
+            RickAndMortyTheme {
             }
         }
     }
-
+}
