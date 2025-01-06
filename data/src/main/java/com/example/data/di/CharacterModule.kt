@@ -2,7 +2,7 @@ package com.example.data.di
 
 import com.apollographql.apollo.ApolloClient
 import com.example.data.repository.CharactersRepositoryImpl
-import com.example.domain.domain.repository.repository.CharactersRepository
+import com.example.domain.domain.repository.CharactersRepository
 import dagger.Module
 import dagger.Provides
 

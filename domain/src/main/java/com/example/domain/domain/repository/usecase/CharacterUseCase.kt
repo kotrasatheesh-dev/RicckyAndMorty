@@ -1,7 +1,8 @@
 package com.example.domain.domain.repository.usecase
 
+import androidx.paging.PagingData
 import com.example.common.GetCharactersQuery
-import com.example.domain.domain.repository.repository.CharactersRepository
+import com.example.domain.domain.repository.CharactersRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
