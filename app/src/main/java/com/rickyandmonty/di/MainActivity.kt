@@ -1,4 +1,4 @@
-package com.example.rickandmorty
+package com.rickyandmonty.di
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
