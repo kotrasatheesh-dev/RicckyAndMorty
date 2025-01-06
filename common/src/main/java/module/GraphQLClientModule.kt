@@ -7,7 +7,6 @@ import javax.inject.Singleton
 
 @Module
 object GraphQLClientModule {
-
     @Provides
     @Singleton
     fun  provideApolloClient(): ApolloClient {
