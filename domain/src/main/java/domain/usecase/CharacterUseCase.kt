@@ -1,8 +1,8 @@
-package usecases
+package domain.usecase
 
 import androidx.paging.PagingData
-import com.example.common.GetCharactersQuery
-import repository.CharactersRepository
+import com.exmple.rickandmorty.GetCharactersQuery
+import domain.repository.CharactersRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

@@ -2,7 +2,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Optional
-import com.example.common.GetCharactersQuery
+import com.exmple.rickandmorty.GetCharactersQuery
 
 class CharacterPagingSource(
     private val apolloClient: ApolloClient,

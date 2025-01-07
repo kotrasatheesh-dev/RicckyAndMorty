@@ -1,10 +1,10 @@
-package com.example.data.di
+package data.di
 
 import com.apollographql.apollo.ApolloClient
-import com.example.data.repository.CharactersRepositoryImpl
+import data.repository.CharactersRepositoryImpl
 import dagger.Module
 import dagger.Provides
-import repository.CharactersRepository
+import domain.repository.CharactersRepository
 import javax.inject.Singleton
 
 @Module

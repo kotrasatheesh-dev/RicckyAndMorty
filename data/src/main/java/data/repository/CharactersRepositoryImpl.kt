@@ -1,13 +1,13 @@
-package com.example.data.repository
+package data.repository
 
 import CharacterPagingSource
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.apollographql.apollo.ApolloClient
-import com.example.common.GetCharactersQuery
+import com.exmple.rickandmorty.GetCharactersQuery
 import kotlinx.coroutines.flow.Flow
-import repository.CharactersRepository
+import domain.repository.CharactersRepository
 import javax.inject.Inject
 
 class CharactersRepositoryImpl

@@ -46,4 +46,6 @@ dependencies {
     implementation(libs.apollo.runtime)
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.runtime)
 }
