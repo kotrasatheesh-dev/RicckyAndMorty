@@ -1,6 +1,5 @@
 package domain.usecase
 
-import androidx.paging.PagingData
 import com.exmple.rickandmorty.GetCharactersQuery
 import domain.repository.CharactersRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,6 +10,6 @@ class CharacterUseCase
 constructor(
     private val charactersRepository: CharactersRepository,
 ) {
-    suspend fun invokeCharacters(): Flow<PagingData<GetCharactersQuery.Result>> =
+    suspend fun invokeCharacters(): Flow<List<GetCharactersQuery.Result>> =
         charactersRepository.getCharacters()
 }
