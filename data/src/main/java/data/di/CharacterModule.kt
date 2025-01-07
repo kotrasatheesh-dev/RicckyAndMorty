@@ -14,5 +14,4 @@ object CharacterModule {
     fun provideCharacterModule(apolloClient: ApolloClient): CharactersRepository {
         return CharactersRepositoryImpl(apolloClient)
     }
-
 }
