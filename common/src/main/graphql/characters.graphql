@@ -1,18 +1,12 @@
-query GetCharacters($page: Int) {
-    characters(page: $page) {
+query GetCharacters {
+    characters {
         results {
             ...character
-        }
-        info {
-            next
-            prev
-            pages
-            count
         }
     }
 }
 
-fragment character on Character{
+fragment character on Character {
     name
     id
     image
