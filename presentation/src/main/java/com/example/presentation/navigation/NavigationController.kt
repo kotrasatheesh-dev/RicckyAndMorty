@@ -12,7 +12,7 @@ import common.module.helpers.NavigationRoutes
 @Composable
 fun NavigationController(
     navController: NavHostController,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     viewModel: CharactersViewModel,
 ) {
     NavHost(
