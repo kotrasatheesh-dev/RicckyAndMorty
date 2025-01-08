@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.apollo)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -40,7 +42,10 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":presentation"))
+    implementation(project(":common"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -56,4 +61,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.apollo.runtime)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.paging.compose) // or the latest version
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
+    implementation(libs.androidx.navigation.compose)
 }
