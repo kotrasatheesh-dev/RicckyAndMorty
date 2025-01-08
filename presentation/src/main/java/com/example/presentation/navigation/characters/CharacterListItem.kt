@@ -20,6 +20,8 @@ import coil.compose.rememberAsyncImagePainter
 fun CharactersListItem(
     imageUrl: String,
     text: String,
+    modifier: Modifier = Modifier,
+
 ) {
     Box(
         modifier =

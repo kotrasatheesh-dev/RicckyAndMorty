@@ -13,7 +13,10 @@
     import androidx.compose.ui.unit.dp
 
     @Composable
-    fun CharacterAppBar(title:String){
+    fun CharacterAppBar(
+        title:String,
+        modifier: Modifier = Modifier
+    ){
         Row (
             modifier =
             Modifier
