@@ -13,20 +13,19 @@
     import androidx.compose.ui.unit.dp
 
     @Composable
-    fun CharacterAppBar(
-        title:String,
-        modifier: Modifier = Modifier
-    ){
-        Row (
-            modifier =
-            Modifier
+    fun CharacterAppBar(title: String) {
+        Row(
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(70.dp)
                 .background(MaterialTheme.colorScheme.background),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
-        ){
-            Text(title, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onBackground)
-
+        ) {
+            Text(
+                title,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onBackground,
+            )
         }
     }

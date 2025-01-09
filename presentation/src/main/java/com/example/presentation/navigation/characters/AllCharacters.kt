@@ -10,18 +10,23 @@ import com.example.presentation.navigation.uistate.UiState
 import com.example.presentation.navigation.viewmodel.CharactersViewModel
 
 @Composable
-fun AllCharacters(viewModel: CharactersViewModel) {
-    val uistate = viewModel.charactersState.collectAsState().value
-    when (uistate) {
+fun AllCharacters(
+    viewModel: CharactersViewModel,
+    modifier: Modifier = Modifier
+) {
+    val uiState = viewModel.charactersState.collectAsState().value
+    when (uiState) {
         is UiState.Empty -> {}
-        is Error -> {}
+        is UiState.Error -> {}
         is UiState.Loading -> {
-            CircularProgressIndicator(modifier = Modifier.size(100.dp))
+            CircularProgressIndicator(modifier = modifier.size(100.dp))
         }
         is UiState.Success -> {
-            val charactersList = uistate.data.collectAsState(initial = emptyList()).value
+            val charactersList = uiState.data.collectAsState(initial = emptyList()).value
             CharactersList(charactersList)
         }
         else -> Unit
     }
 }
+
+

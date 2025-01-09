@@ -20,19 +20,17 @@ import coil.compose.rememberAsyncImagePainter
 fun CharactersListItem(
     imageUrl: String,
     text: String,
-    modifier: Modifier = Modifier,
-
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .aspectRatio(1f), // Ensures the grid items are square
+        modifier = modifier
+            .fillMaxWidth()
+            .aspectRatio(1f),
     ) {
         val painter = rememberAsyncImagePainter(imageUrl)
         Image(
             painter = painter,
-            contentDescription = "Grid Image",
+            contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize(),
         )
@@ -40,10 +38,10 @@ fun CharactersListItem(
             text = text,
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onPrimary,
-            modifier =
-                Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(8.dp),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(8.dp),
         )
     }
 }
+
