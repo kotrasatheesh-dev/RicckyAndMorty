@@ -12,8 +12,8 @@ import common.module.helpers.NavigationRoutes
 @Composable
 fun NavigationController(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    viewModel: CharactersViewModel,
+    viewModel: Modifier,
+    modifier: CharactersViewModel = Modifier,
 ) {
     NavHost(
         navController,
