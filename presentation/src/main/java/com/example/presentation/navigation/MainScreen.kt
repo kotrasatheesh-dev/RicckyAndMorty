@@ -17,7 +17,11 @@ fun MainScreen(viewModel: CharactersViewModel) {
         modifier = Modifier.fillMaxSize(),
         topBar = { CharacterAppBar(stringResource(R.string.app_name)) },
         content = { innerPadding ->
-            NavigationController(navController, Modifier.padding(innerPadding),viewModel)
+            NavigationController(
+                navController = navController,
+                modifier = Modifier.padding(innerPadding),
+                viewModel = viewModel
+            )
         },
     )
 }
