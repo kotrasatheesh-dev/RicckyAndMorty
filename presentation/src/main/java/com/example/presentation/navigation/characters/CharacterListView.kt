@@ -12,10 +12,13 @@ import androidx.paging.compose.LazyPagingItems
 import com.exmple.rickandmorty.GetCharactersQuery
 
 @Composable
-fun CharactersList(charactersList: LazyPagingItems<GetCharactersQuery.Result>?) {
+fun CharactersList(
+    charactersList: LazyPagingItems<GetCharactersQuery.Result>?,
+    modifier: Modifier = Modifier
+) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(8.dp),
         horizontalArrangement = Arrangement.spacedBy(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),

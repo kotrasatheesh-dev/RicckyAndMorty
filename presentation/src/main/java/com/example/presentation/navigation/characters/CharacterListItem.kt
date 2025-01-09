@@ -20,10 +20,10 @@ import coil.compose.rememberAsyncImagePainter
 fun CharactersListItem(
     imageUrl: String,
     text: String,
+    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier =
-        Modifier
+        modifier = modifier
             .fillMaxWidth()
             .aspectRatio(1f),
     ) {
