@@ -13,14 +13,18 @@ import com.example.presentation.navigation.viewmodel.CharactersViewModel
 @Composable
 fun MainScreen(
     viewModel: CharactersViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
     Scaffold(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(), // Apply modifier here
         topBar = { CharacterAppBar(stringResource(R.string.app_name)) },
         content = { innerPadding ->
-            NavigationController(navController, modifier.padding(innerPadding),viewModel)
+            NavigationController(
+                navController = navController,
+                modifier = Modifier.padding(innerPadding),
+                viewModel = viewModel,
+            )
         },
     )
 }
