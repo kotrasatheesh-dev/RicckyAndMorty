@@ -6,24 +6,28 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.presentation.navigation.characters.AllCharacters
+import com.example.presentation.navigation.uistate.UiState
 import com.example.presentation.navigation.viewmodel.CharactersViewModel
 import common.module.helpers.NavigationRoutes
 
 @Composable
 fun NavigationController(
     navController: NavHostController,
-    viewModel: CharactersViewModel,
+    charactersState: UiState,
+    onLoadCharacters: () -> Unit,
     modifier:Modifier  = Modifier,
 ) {
     NavHost(
         navController,
-        NavigationRoutes.AllCharacters.name,
+        startDestination = NavigationRoutes.AllCharacters.name,
         modifier = modifier,
     ) {
         composable(NavigationRoutes.AllCharacters.name) {
-            AllCharacters(viewModel)
+            AllCharacters(
+                uiState = charactersState,
+                onLoadCharacters = onLoadCharacters
+            )
         }
     }
 }
-
 
