@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
@@ -16,6 +17,7 @@ fun MainScreen(
     modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
+    val charactersState = viewModel.charactersState.collectAsState().value
     Scaffold(
         modifier = modifier.fillMaxSize(), // Apply modifier here
         topBar = { CharacterAppBar(stringResource(R.string.app_name)) },
@@ -23,7 +25,8 @@ fun MainScreen(
             NavigationController(
                 navController = navController,
                 modifier = Modifier.padding(innerPadding),
-                viewModel = viewModel,
+                charactersState = charactersState,
+                onLoadCharacters = { viewModel.fetchData() }
             )
         },
     )
