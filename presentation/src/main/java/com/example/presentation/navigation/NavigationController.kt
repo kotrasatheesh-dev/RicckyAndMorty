@@ -12,12 +12,12 @@ import common.module.helpers.NavigationRoutes
 @Composable
 fun NavigationController(
     navController: NavHostController,
+    modifier: Modifier,
     viewModel: CharactersViewModel,
-    modifier: Modifier = Modifier
 ) {
     NavHost(
-        navController = navController,
-        startDestination = NavigationRoutes.AllCharacters.name,
+        navController,
+        NavigationRoutes.AllCharacters.name,
         modifier = modifier,
     ) {
         composable(NavigationRoutes.AllCharacters.name) {
@@ -25,4 +25,5 @@ fun NavigationController(
         }
     }
 }
+
 

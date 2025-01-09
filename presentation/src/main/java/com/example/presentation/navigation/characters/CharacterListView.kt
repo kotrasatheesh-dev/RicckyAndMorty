@@ -8,30 +8,24 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.LazyPagingItems
 import com.exmple.rickandmorty.GetCharactersQuery
 
 @Composable
-fun CharactersList(
-    charactersList: List<GetCharactersQuery.Result>?,
-    modifier: Modifier = Modifier
-) {
+fun CharactersList(charactersList: LazyPagingItems<GetCharactersQuery.Result>?) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(8.dp),
         horizontalArrangement = Arrangement.spacedBy(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        items(charactersList?.size ?: 0) { index ->
-            val character = charactersList?.get(index)?.character
-            if (character != null) {
-                CharactersListItem(
-                    imageUrl = character.image ?: "",
-                    text = character.name ?: "Unknown"
-                )
-            }
+        items(charactersList?.itemCount ?: 0) { index ->
+            val item = charactersList?.get(index)
+            CharactersListItem(item?.character?.image ?: "", item?.character?.name ?: "")
         }
     }
 }
+
 
 
