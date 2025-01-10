@@ -1,8 +1,7 @@
-package domain.repository
+    package domain.repository
 
-import com.exmple.rickandmorty.GetCharactersQuery
-import kotlinx.coroutines.flow.Flow
+    import domain.model.Character
 
-interface CharactersRepository {
-    suspend fun getCharacters(): Flow<List<GetCharactersQuery.Result>>
-}
+    interface CharactersRepository {
+        suspend fun getCharacters(): List<Character>
+    }

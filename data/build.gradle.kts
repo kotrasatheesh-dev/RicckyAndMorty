@@ -43,9 +43,24 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.turbine)
+    testImplementation(libs.truth)
     implementation(libs.apollo.runtime)
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
     implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.paging.runtime)
+}
+
+apollo {
+    service("rickAndMorty"){
+        packageName.set("com.exmple.rickandmorty")
+        introspection {
+            endpointUrl.set("https://rickandmortyapi.com/graphql")
+            schemaFile.set(file("data/src/main/graphql/schema.sdl"))
+        }
+    }
 }
