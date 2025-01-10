@@ -1,4 +1,4 @@
-package domain.model
+package common.module.model
 
 data class Character(
     val id: String,

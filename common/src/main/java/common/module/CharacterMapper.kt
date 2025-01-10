@@ -1,11 +1,11 @@
-package domain.maper
-
+package common.module
 
 import com.exmple.rickandmorty.GetCharactersQuery
-import domain.model.Character
+import common.module.model.Character
+
 
 object CharacterMapper {
-    fun map(result: zGetCharactersQuery.Result): Character {
+    fun map(result: GetCharactersQuery.Result): Character {
         return Character(
             id = result.id ?: "",
             name = result.name ?: "Unknown",

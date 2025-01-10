@@ -1,6 +1,6 @@
 package domain.usecase
 
-import domain.model.Character
+import data.model.Character
 import domain.repository.CharactersRepository
 import javax.inject.Inject
 
@@ -9,6 +9,6 @@ class CharacterUseCase
 constructor(
     private val charactersRepository: CharactersRepository,
 ) {
-    suspend fun invokeCharacters(): List<Character> =
+    suspend fun invokeCharacters(): List<data.model.Character> =
         charactersRepository.getCharacters()
 }
