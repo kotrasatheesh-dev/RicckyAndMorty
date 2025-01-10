@@ -13,7 +13,7 @@ import org.junit.Before
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class CharacterUseCaseTest {
+class TestCharactersUseCase {
 
     private lateinit var useCase: CharacterUseCase
     private lateinit var repository: CharactersRepository
