@@ -1,7 +1,7 @@
-package common.module
+package data.module
+
 
 import com.exmple.rickandmorty.GetCharactersQuery
-import common.module.model.Character
 
 
 object CharacterMapper {

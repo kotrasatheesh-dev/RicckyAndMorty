@@ -3,8 +3,7 @@
     import com.apollographql.apollo.ApolloClient
     import com.apollographql.apollo.exception.ApolloException
     import com.exmple.rickandmorty.GetCharactersQuery
-    import common.module.CharacterMapper
-    import data.model.Character
+    import data.module.CharacterMapper
     import domain.repository.CharactersRepository
     import exception.RepositoryException
     import javax.inject.Inject

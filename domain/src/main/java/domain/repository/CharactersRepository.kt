@@ -1,7 +1,8 @@
     package domain.repository
 
-    import data.model.Character
+    import common.module.model.Character
+
 
     interface CharactersRepository {
-        suspend fun getCharacters(): List<data.model.Character>
+        suspend fun getCharacters(): List<Character>
     }
