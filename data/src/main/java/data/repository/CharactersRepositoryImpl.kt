@@ -22,15 +22,15 @@ constructor(
             if (response.hasErrors() || results == null) {
                 val errorMessage = response.errors?.firstOrNull()?.message.orEmpty()
                 throw RepositoryException.ApiException(
-                    "Failed to fetch characters: $errorMessage"
+                    errorMessage.toString()
                 )
             }
             // Mapping response to List<Character>
             return CharacterMapper.mapList(results)
         } catch (e: ApolloException) {
-            throw RepositoryException.NetworkException("Network error: ${e.message}")
+            throw RepositoryException.NetworkException(e.message.toString())
         } catch (e: Exception) {
-            throw RepositoryException.UnknownException("Unknown error: ${e.message}")
+            throw RepositoryException.UnknownException(e.message.toString())
         }
     }
 }
