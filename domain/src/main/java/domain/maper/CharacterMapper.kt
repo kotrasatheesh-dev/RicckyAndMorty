@@ -5,7 +5,7 @@ import com.exmple.rickandmorty.GetCharactersQuery
 import domain.model.Character
 
 object CharacterMapper {
-    fun map(result: GetCharactersQuery.Result): Character {
+    fun map(result: zGetCharactersQuery.Result): Character {
         return Character(
             id = result.id ?: "",
             name = result.name ?: "Unknown",
