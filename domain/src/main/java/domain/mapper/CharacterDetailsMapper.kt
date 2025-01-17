@@ -1,6 +1,6 @@
 package domain.mapper
 
-import domain.repository.Episode
+import domain.repository.Character
 
 data class CharacterDetailsMapper(
     val id: String? = "",
@@ -13,5 +13,5 @@ data class CharacterDetailsMapper(
     val originDimension: String? = "",
     val locationName: String? = "",
     val locationDimension: String? = "",
-    val episodes: List<Episode?>?
+    val episodes: List<Character.Episode?>?
 )

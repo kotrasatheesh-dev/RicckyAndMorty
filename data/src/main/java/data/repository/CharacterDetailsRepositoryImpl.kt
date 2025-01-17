@@ -3,6 +3,7 @@ package data.repository
 import com.apollographql.apollo.ApolloClient
 import com.exmple.rickandmorty.GetCharacterDetailsByIdQuery
 import domain.mapper.CharacterDetailsMapper
+import domain.repository.Character
 import domain.repository.CharacterDetailsRepository
 
 class CharacterDetailsRepositoryImpl(private val apolloClient: ApolloClient) :
@@ -14,7 +15,13 @@ class CharacterDetailsRepositoryImpl(private val apolloClient: ApolloClient) :
                 Result.failure(Exception(response.errors?.joinToString { it.message }))
             } else {
                 val characterDetails = response.data?.character?.character
-                var episodes = characterDetails?.episode
+                var episodes = characterDetails?.episode?.map { episode ->
+                    Character.Episode(
+                        id = episode?.episode.orEmpty(),
+                        name = episode?.name.orEmpty(),
+                        airDate = episode?.air_date.orEmpty()
+                    )
+                }
                 characterDetails?.let {
                     Result.success(
                         CharacterDetailsMapper(
@@ -27,10 +34,11 @@ class CharacterDetailsRepositoryImpl(private val apolloClient: ApolloClient) :
                             originName = it.origin?.name,
                             originDimension = it.origin?.dimension,
                             locationName = it.location?.location?.name,
-                            locationDimension = it.location?.location?.dimension, episodes = episodes
+                            locationDimension = it.location?.location?.dimension,
+                            episodes = episodes
                         )
                     )
-                } ?: Result.failure(Exception())
+                } ?: Result.failure(Exception("Character details not found"))
             }
         } catch (e: Exception) {
             Result.failure(e)
