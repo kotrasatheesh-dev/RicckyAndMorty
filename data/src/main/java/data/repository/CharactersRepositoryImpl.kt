@@ -6,7 +6,7 @@ import com.exmple.rickandmorty.GetCharactersQuery
 import domain.repository.Character
 import data.module.CharacterMapper
 import domain.repository.CharactersRepository
-import exception.RepositoryException
+import exception.DataAccessException
 import javax.inject.Inject
 
 class CharactersRepositoryImpl
@@ -21,16 +21,15 @@ constructor(
             val results = response.data?.characters?.results
             if (response.hasErrors() || results == null) {
                 val errorMessage = response.errors?.firstOrNull()?.message.orEmpty()
-                throw RepositoryException.ApiException(
+                throw DataAccessException.ApiException(
                     errorMessage.toString()
                 )
             }
-            // Mapping response to List<Character>
-            return CharacterMapper.mapList(results)
+            return CharacterMapper.mapList(results)!!
         } catch (e: ApolloException) {
-            throw RepositoryException.NetworkException(e.message.toString())
+            throw DataAccessException.NetworkException(e.message.toString())
         } catch (e: Exception) {
-            throw RepositoryException.UnknownException(e.message.toString())
+            throw DataAccessException.UnknownException(e.message.toString())
         }
     }
 }
