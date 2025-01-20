@@ -9,28 +9,33 @@ import com.example.presentation.navigation.uistate.UiState
 
 @Composable
 fun AllCharacters(
-    uiState: UiState,
+    uiState: UiState<List<GetCharactersQuery.Result>>,
     onLoadCharacters: () -> Unit,
     modifier: Modifier = Modifier,
+    onNavigateToCharacterDetails: (String) -> Unit,
 ) {
     when (uiState) {
         is UiState.Empty -> {
             onLoadCharacters()
         }
         is UiState.Error -> {
-            // Handle error state
+            // Display an error message or retry button
         }
         is UiState.Loading -> {
             CircularProgressIndicator(modifier = modifier.size(100.dp))
         }
         is UiState.Success -> {
-            val charactersList = uiState.data // Assuming this is a List<GetCharactersQuery.Result>
+            val charactersList = uiState.data
             CharactersList(
-                charactersList = charactersList // Pass the list directly
+                charactersList = charactersList,
+                onNavigateToCharacterDetails = onNavigateToCharacterDetails,
+                modifier = modifier
             )
         }
         else -> Unit
     }
+}
+
 }
 
 
