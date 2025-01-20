@@ -16,5 +16,10 @@ abstract class ViewModelModule {
     abstract fun bindMyViewModel(myViewModel: CharactersViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(CharacterDetailsViewModel::class)
+    abstract fun bindCharacterDetailsViewModel(myViewModel: CharacterDetailsViewModel): ViewModel
+
+    @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactoryProvider): ViewModelProvider.Factory
 }
