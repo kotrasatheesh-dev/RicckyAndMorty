@@ -13,10 +13,9 @@
             )
         }
 
-        fun mapList(results: List<GetCharactersQuery.Result?>?): List<Character>? {
+        fun mapList(results: List<GetCharactersQuery.Result?>): List<Character> {
             return results
-                ?.filterNotNull()
-                ?.takeIf { it.isNotEmpty() }
-                ?.map { map(it) }
+                .filterNotNull()
+                .map { map(it) }
         }
     }

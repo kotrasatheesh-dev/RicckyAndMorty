@@ -19,13 +19,13 @@ constructor(
         try {
             val response = apolloClient.query(GetCharactersQuery()).execute()
             val results = response.data?.characters?.results
-            if (response.hasErrors() || results == null) {
+            if (results.isNullOrEmpty()||response.hasErrors() ) {
                 val errorMessage = response.errors?.firstOrNull()?.message.orEmpty()
                 throw DataAccessException.ApiException(
                     errorMessage.toString()
                 )
             }
-            return CharacterMapper.mapList(results)!!
+            return CharacterMapper.mapList(results)
         } catch (e: ApolloException) {
             throw DataAccessException.NetworkException(e.message.toString())
         } catch (e: Exception) {
