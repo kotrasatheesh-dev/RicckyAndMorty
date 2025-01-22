@@ -26,19 +26,13 @@ constructor(
 
     fun fetchData() {
         viewModelScope.launch {
-            charactersUseCase.invokeCharacters()
-                .onStart {
-                    // Emit loading state
-                    _charactersState.emit(UiState.Loading)
-                }
-                .catch { exception ->
-                    // Emit error state with the exception message
-                    _charactersState.emit(UiState.Error(exception.message ?: "Unknown error"))
-                }
-                .collect { characters ->
-                    // Emit success state with the collected characters
-                    _charactersState.emit(UiState.Success(characters))
-                }
+            _charactersState.value = UiState.Loading
+            val characters = charactersUseCase.invokeCharacters()
+            if (characters.isNotEmpty()) {
+                _charactersState.value = UiState.Success(characters)
+            } else {
+                _charactersState.value = UiState.Error("No characters found")
+            }
         }
     }
 }

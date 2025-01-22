@@ -8,12 +8,12 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.exmple.rickandmorty.GetCharactersQuery
+import domain.repository.Character
 
 
 @Composable
 fun CharactersList(
-    charactersList: List<GetCharactersQuery.Result>?,
+    charactersList: List<Character>,
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
