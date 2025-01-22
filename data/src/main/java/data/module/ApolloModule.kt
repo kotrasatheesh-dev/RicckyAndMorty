@@ -1,4 +1,4 @@
-package common.module
+package data.module
 
 import com.apollographql.apollo.ApolloClient
 import dagger.Module
@@ -14,7 +14,7 @@ object ApolloModule {
         val apolloClient =
             ApolloClient
                 .Builder()
-                .serverUrl("https://rickandmortyapi.com/graphql")
+                .serverUrl(Constants.BASE_URL)
                 .build()
         return apolloClient
     }

@@ -47,12 +47,3 @@ dependencies {
     ksp(libs.dagger.compiler)
 }
 
-apollo {
-    service("rickAndMorty"){
-        packageName.set("com.exmple.rickandmorty")
-        introspection {
-            endpointUrl.set("https://rickandmortyapi.com/graphql")
-            schemaFile.set(file("common/src/main/graphql/schema.sdl"))
-        }
-    }
-}

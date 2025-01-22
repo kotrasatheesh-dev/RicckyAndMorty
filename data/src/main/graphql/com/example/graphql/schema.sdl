@@ -2,7 +2,7 @@ type Query {
   """
   Get a specific character by ID
   """
-  character("" id: ID!): Character
+  character("" id: ID): Character
 
   """
   Get the list of all characters

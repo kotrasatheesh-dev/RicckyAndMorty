@@ -1,8 +1,8 @@
 package domain.usecase
 
-import com.exmple.rickandmorty.GetCharactersQuery
+
+import domain.repository.Character
 import domain.repository.CharactersRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CharacterUseCase
@@ -10,6 +10,6 @@ class CharacterUseCase
 constructor(
     private val charactersRepository: CharactersRepository,
 ) {
-    suspend fun invokeCharacters(): Flow<List<GetCharactersQuery.Result>> =
+    suspend fun invokeCharacters(): List<Character> =
         charactersRepository.getCharacters()
 }
