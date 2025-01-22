@@ -8,8 +8,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.paging.compose.LazyPagingItems
 import com.exmple.rickandmorty.GetCharactersQuery
+
 
 @Composable
 fun CharactersList(
@@ -25,7 +25,7 @@ fun CharactersList(
     ) {
         items(charactersList?.size ?: 0) { index ->
             val item = charactersList?.get(index)
-            CharactersListItem(item?.character?.image ?: "", item?.character?.name ?: "")
+            CharactersListItem(item?.image ?: "", item?.name ?: "")
         }
     }
 }
