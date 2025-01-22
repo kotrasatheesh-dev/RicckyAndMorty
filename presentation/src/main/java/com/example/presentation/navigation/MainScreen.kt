@@ -8,32 +8,26 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.PagingData
 import com.example.presentation.R
 import com.example.presentation.navigation.viewmodel.CharactersViewModel
-import com.exmple.rickandmorty.GetCharactersQuery
-import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun MainScreen(
-    allCharactersState: StateFlow<UiState<List<GetCharactersQuery.Result>>>,
-    topBarTitle: String,
-    onNavigateToCharacterDetails: (String) -> Unit,
-    onLoadCharacters: () -> Unit
+    viewModel: CharactersViewModel,
+    modifier: Modifier = Modifier,
 ) {
-    val uiState = allCharactersState.collectAsState().value
-
+    val navController = rememberNavController()
+    val charactersState = viewModel.charactersState.collectAsState().value
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = { RickAndMortyAppBar(topBarTitle) },
+        modifier = modifier.fillMaxSize(), // Apply modifier here
+        topBar = { CharacterAppBar(stringResource(R.string.app_name)) },
         content = { innerPadding ->
-            AllCharacters(
-                uiState = uiState,
-                onLoadCharacters = onLoadCharacters,
+            NavigationController(
+                navController = navController,
                 modifier = Modifier.padding(innerPadding),
-                onNavigateToCharacterDetails = onNavigateToCharacterDetails
+                charactersState = charactersState,
+                onLoadCharacters = { viewModel.fetchData() }
             )
         },
     )
 }
-
