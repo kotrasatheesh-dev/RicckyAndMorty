@@ -14,7 +14,8 @@ import domain.repository.Character
 @Composable
 fun CharactersList(
     charactersList: List<Character>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onCharacterClick: (String) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -25,7 +26,15 @@ fun CharactersList(
     ) {
         items(charactersList?.size ?: 0) { index ->
             val item = charactersList?.get(index)
-            CharactersListItem(item?.image ?: "", item?.name ?: "")
+            CharactersListItem(item?.image ?: "",
+                item?.name ?: "",
+                onClick = {
+                    if (item != null) {
+                        onCharacterClick(item.id?:"")
+                    }
+                }
+
+            )
         }
     }
 }

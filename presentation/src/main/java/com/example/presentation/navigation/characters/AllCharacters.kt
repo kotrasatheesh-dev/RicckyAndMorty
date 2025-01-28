@@ -1,5 +1,6 @@
 package com.example.presentation.navigation.characters
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import com.example.presentation.navigation.uistate.UiState
 fun AllCharacters(
     uiState: UiState,
     onLoadCharacters: () -> Unit,
+    onNavigateToCharacterDetails: (String,String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     when (uiState) {
@@ -24,9 +26,13 @@ fun AllCharacters(
             CircularProgressIndicator(modifier = modifier.size(100.dp))
         }
         is UiState.Success -> {
-            val charactersList = uiState.data // Assuming this is a List<GetCharactersQuery.Result>
+            val charactersList = uiState.data
             CharactersList(
-                charactersList = charactersList // Pass the list directly
+                charactersList = charactersList,
+                modifier.padding(),
+                onCharacterClick = { characterId ->
+                    onNavigateToCharacterDetails(characterId,"Character Details")
+                }
             )
         }
         else -> Unit

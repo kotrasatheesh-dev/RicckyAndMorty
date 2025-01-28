@@ -1,6 +1,7 @@
 package com.example.presentation.navigation.characters
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,11 +22,13 @@ fun CharactersListItem(
     imageUrl: String,
     text: String,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(1f),
+            .aspectRatio(1f)
+            .clickable { onClick () }
     ) {
         val painter = rememberAsyncImagePainter(imageUrl)
         Image(
