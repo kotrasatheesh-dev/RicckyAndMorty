@@ -54,18 +54,26 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.apollo.runtime)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.turbine)
+    testImplementation(libs.truth)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.apollo.runtime)
-    implementation(libs.coil.compose)
-    implementation(libs.androidx.paging.compose) // or the latest version
-    implementation(libs.androidx.paging.runtime)
-    implementation(libs.dagger)
-    ksp(libs.dagger.compiler)
-    implementation(libs.androidx.navigation.compose)
+    
+   
+
 }

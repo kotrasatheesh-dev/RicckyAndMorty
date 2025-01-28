@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
     implementation(project(":common"))
     implementation(project(":domain"))
     implementation(libs.androidx.core.ktx)
@@ -48,7 +49,8 @@ dependencies {
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.coil.compose)
-    implementation(project(":data"))
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.coil.compose)
     ksp(libs.dagger.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
