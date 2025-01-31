@@ -14,7 +14,6 @@ class EpisodeDetailsRepositoryImpl(private val apolloClient: ApolloClient) : Epi
             } else {
                 val episodeDetails = response.data?.episode
                 var characters = episodeDetails?.characters?.map { character ->
-                    // Use EpisodeDetailsMapper.Character instead of Episode.Character
                     EpisodeDetailsMapper.Character(
                         id = character?.id.orEmpty(),
                         name = character?.name.orEmpty(),

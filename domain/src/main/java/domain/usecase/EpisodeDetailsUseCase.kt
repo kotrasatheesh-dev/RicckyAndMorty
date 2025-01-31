@@ -9,4 +9,5 @@ class EpisodeDetailsUseCase @Inject constructor(private val episodeDetailsReposi
     suspend fun invoke(episodeId : String): Result<EpisodeDetailsMapper> {
         return episodeDetailsRepository.getEpisodeDetailsById(episodeId)
     }
+
 }
