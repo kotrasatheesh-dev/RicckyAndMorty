@@ -35,11 +35,9 @@ fun NavigationController(
         ) { navBackStackEntry ->
             val characterId = navBackStackEntry.arguments?.getString("CharacterId")
             val viewModel: CharacterDetailsViewModel = viewModel(factory = viewModelFactory)
-            characterId.orEmpty().let { viewModel.getCharacterDetails(it) }
+            characterId?.let { viewModel.getCharacterDetails(it) }
             CharacterDetails(viewModel.characterDetails)
         }
     }
 }
-
-
 

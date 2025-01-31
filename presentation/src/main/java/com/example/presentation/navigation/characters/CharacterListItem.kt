@@ -16,12 +16,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.exmple.rickandmorty.GetCharactersQuery
+import common.module.helpers.NavigationRoutes
 
 @Composable
 fun CharactersListItem(
     imageUrl: String,
-    text: String,
-    onClick: () -> Unit,
+    characterName: String,
+    characterId: String,
+    onClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 
 ) {
@@ -29,7 +32,8 @@ fun CharactersListItem(
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(1f)
-            .clickable { onClick() }
+            .clickable { onClick(NavigationRoutes.CharacterDetails.createRoute(characterId))
+}
     ) {
         val painter = rememberAsyncImagePainter(imageUrl)
         Image(
@@ -39,7 +43,7 @@ fun CharactersListItem(
             modifier = Modifier.fillMaxSize(),
         )
         Text(
-            text = text,
+            text = characterName,
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             modifier =

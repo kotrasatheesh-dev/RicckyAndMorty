@@ -1,13 +1,13 @@
-package com.example.presentation.navigation.navigation
+    package com.example.presentation.navigation.navigation
 
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+    import dagger.Module
+    import dagger.Provides
+    import javax.inject.Singleton
 
-@Module
-class NavigationModule {
-    @Provides
-    @Singleton
-    fun provideNavigator(
-    ): Navigator = NavControllerNavigator()
-}
+    @Module
+    class NavigationModule {
+        @Provides
+        @Singleton
+        fun provideNavigator(
+        ): Navigator = NavControllerNavigator()
+    }

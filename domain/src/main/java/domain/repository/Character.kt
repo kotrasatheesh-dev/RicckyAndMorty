@@ -8,6 +8,7 @@ data class Character(
     data class Episode(
         val id: String? = "",
         val name: String? = "",
-        val airDate: String? = ""
+        val airDate: String? = "",
+        val episode :String? = ""
     )
 }

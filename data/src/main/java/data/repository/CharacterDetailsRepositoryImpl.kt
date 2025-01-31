@@ -20,7 +20,8 @@ class CharacterDetailsRepositoryImpl @Inject constructor(private val apolloClien
                     Character.Episode(
                         id = episode?.episode.orEmpty(),
                         name = episode?.name.orEmpty(),
-                        airDate = episode?.air_date.orEmpty()
+                        airDate = episode?.air_date.orEmpty() ,
+                        episode = episode?.episode.orEmpty()
                     )
                 }
                 characterDetails?.let {

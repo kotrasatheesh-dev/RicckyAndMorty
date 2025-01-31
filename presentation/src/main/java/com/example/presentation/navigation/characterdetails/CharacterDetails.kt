@@ -270,7 +270,7 @@ fun EpisodeListItem(item: Character.Episode?, index: Int, modifier: Modifier = M
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Text(
-                text = item?.name.orEmpty(),
+                text = item?.episode.orEmpty(),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimary
             )
@@ -281,7 +281,7 @@ fun EpisodeListItem(item: Character.Episode?, index: Int, modifier: Modifier = M
 @Composable
 fun CustomTextWithStyleMediumColorPrimary(
     text: String,
-    modifier: Modifier = Modifier, // ✅ Add Modifier parameter
+    modifier: Modifier = Modifier,
     style: TextStyle = MaterialTheme.typography.titleMedium,
     color: Color = MaterialTheme.colorScheme.primary
 ) {
