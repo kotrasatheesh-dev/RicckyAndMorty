@@ -20,13 +20,12 @@ class TestCharactersUseCase {
 
     @Before
     fun setup() {
-        repository = mockk() // Mock the repository
-        useCase = CharacterUseCase(repository) // Inject the mock into the use case
+        repository = mockk()
+        useCase = CharacterUseCase(repository)
     }
 
     @Test
     fun `given valid characters, when Characters is called, then returns character list`() = runTest {
-        // Given
         val expectedCharacters = listOf(
             Character(
                 id = "1",

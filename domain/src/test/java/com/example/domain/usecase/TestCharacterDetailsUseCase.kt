@@ -21,8 +21,8 @@ class TestCharacterDetailsUseCase {
 
     @Before
     fun setup() {
-        repository = mockk() // Mock the repository
-        useCase = CharacterDetailsUseCase(repository) // Inject the mock into the use case
+        repository = mockk()
+        useCase = CharacterDetailsUseCase(repository)
     }
 
     @Test
@@ -48,11 +48,7 @@ class TestCharacterDetailsUseCase {
             )
         )
         coEvery { repository.getCharacterDetailsById(characterId) } returns Result.success(expectedDetails)
-
-        // When
         val result = useCase.invoke(characterId)
-
-        // Then
         assertThat(result.isSuccess).isTrue()
         assertThat(result.getOrNull()).isEqualTo(expectedDetails)
         coVerify { repository.getCharacterDetailsById(characterId) }
@@ -60,15 +56,10 @@ class TestCharacterDetailsUseCase {
 
     @Test
     fun `given invalid character ID, when invoke is called, then returns failure`() = runTest {
-        // Given
         val characterId = "999"
         coEvery { repository.getCharacterDetailsById(characterId)
         } returns Result.failure(Throwable("Character not found"))
-
-        // When
         val result = useCase.invoke(characterId)
-
-        // Then
         assertThat(result.isFailure).isTrue()
         assertThat(result.exceptionOrNull()?.message).isEqualTo("Character not found")
         coVerify { repository.getCharacterDetailsById(characterId) }

@@ -1,5 +1,6 @@
 package domain.mapper
 
+
 import domain.repository.Character
 
 data class CharacterDetailsMapper(

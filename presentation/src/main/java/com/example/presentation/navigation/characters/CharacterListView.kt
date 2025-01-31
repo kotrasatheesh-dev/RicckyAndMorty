@@ -12,21 +12,31 @@ import domain.repository.Character
 
 
 @Composable
-fun CharactersList(
+fun     CharactersList(
     charactersList: List<Character>,
+    innerPadding: PaddingValues,
+    onNavigate: (String) -> Unit,
     modifier: Modifier = Modifier
+
+
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(8.dp),
+        contentPadding = innerPadding,
         horizontalArrangement = Arrangement.spacedBy(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        items(charactersList?.size ?: 0) { index ->
-            val item = charactersList?.get(index)
-            CharactersListItem(item?.image ?: "", item?.name ?: "")
+        items(charactersList.size) { index ->
+            val item = charactersList[index]
+            CharactersListItem(
+                item.image ?: "",
+                item.name ?: "",
+                onClick = { onNavigate("character_details/${item.id}") }
+            )
         }
     }
 }
+
+
 

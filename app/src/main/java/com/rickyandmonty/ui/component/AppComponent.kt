@@ -13,5 +13,5 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(activity: MainActivity)
 
-    fun viewModelFactory(): ViewModelProvider.Factory // Expose ViewModelFactory
+    fun viewModelFactory(): ViewModelProvider.Factory
 }

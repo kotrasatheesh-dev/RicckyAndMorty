@@ -5,8 +5,9 @@ import com.exmple.rickandmorty.GetCharacterDetailsByIdQuery
 import domain.mapper.CharacterDetailsMapper
 import domain.repository.Character
 import domain.repository.CharacterDetailsRepository
+import javax.inject.Inject
 
-class CharacterDetailsRepositoryImpl(private val apolloClient: ApolloClient) :
+class CharacterDetailsRepositoryImpl @Inject constructor(private val apolloClient: ApolloClient) :
     CharacterDetailsRepository {
     override suspend fun getCharacterDetailsById(id: String): Result<CharacterDetailsMapper> {
         return try {
