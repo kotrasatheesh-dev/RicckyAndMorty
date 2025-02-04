@@ -1,32 +1,6 @@
-    query GetCharacterDetailsById($id: ID!) {
-      character(id: $id) {
-        ...character
-      }
-    }
 
-    fragment character on Character {
-      name
-      id
-      image
-      status
-      species
-      gender
-      location {
-        ...location
-      }
-      origin {
-        name
-        dimension
-      }
-      episode {
-        air_date
-        name
-        episode
-      }
-    }
-
-    fragment location on Location {
-      id
-      name
-      dimension
-    }
+ query GetCharacterDetailsById($id: ID!) {
+          character(id: $id) {
+            ...character
+          }
+        }
