@@ -3,7 +3,9 @@ package com.example.domain.usecase
 import domain.mapper.EpisodeDetailsMapper
 import domain.repository.EpisodeDetailsRepository
 import domain.usecase.EpisodeDetailsUseCase
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -51,7 +53,8 @@ class EpisodeDetailsUseCaseTest {
 
     @Test
     fun `test null data from repository`() = runBlocking {
-        coEvery { episodeDetailsRepository.getEpisodeDetailsById("1") } returns Result.failure(Exception("Character details not found"))
+        coEvery { episodeDetailsRepository.getEpisodeDetailsById(
+            "1") } returns Result.failure(Exception("Character details not found"))
         val result = episodeDetailsUseCase.invoke("1")
         assertTrue(result.isFailure)
         assertEquals(result.exceptionOrNull()?.message, "Character details not found")
