@@ -1,3 +1,4 @@
+
  query GetCharacterDetailsById($id: ID!) {
           character(id: $id) {
             ...character

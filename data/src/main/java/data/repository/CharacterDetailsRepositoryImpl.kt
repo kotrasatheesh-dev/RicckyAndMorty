@@ -4,13 +4,11 @@ import com.apollographql.apollo.ApolloClient
 import com.exmple.rickandmorty.GetCharacterDetailsByIdQuery
 import domain.mapper.CharacterDetailsMapper
 import domain.repository.CharacterDetailsRepository
-import data.module.CharacterDetailsMapperFactory
+import javax.inject.Inject
 
-class CharacterDetailsRepositoryImpl(
-    private val apolloClient: ApolloClient,
+class CharacterDetailsRepositoryImpl @Inject constructor(private val apolloClient: ApolloClient) :
     private val mapperFactory: CharacterDetailsMapperFactory = CharacterDetailsMapperFactory()
 ) : CharacterDetailsRepository {
-
     override suspend fun getCharacterDetailsById(id: String): Result<CharacterDetailsMapper> {
         return try {
             // Execute the GraphQL query using Apollo

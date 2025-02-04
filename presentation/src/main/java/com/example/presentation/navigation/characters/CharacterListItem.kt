@@ -1,6 +1,7 @@
 package com.example.presentation.navigation.characters
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,17 +16,24 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.exmple.rickandmorty.GetCharactersQuery
+import common.module.helpers.NavigationRoutes
 
 @Composable
 fun CharactersListItem(
     imageUrl: String,
-    text: String,
+    characterName: String,
+    characterId: String,
+    onClick: (String) -> Unit,
     modifier: Modifier = Modifier,
+
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(1f),
+            .aspectRatio(1f)
+            .clickable { onClick(NavigationRoutes.CharacterDetails.createRoute(characterId))
+}
     ) {
         val painter = rememberAsyncImagePainter(imageUrl)
         Image(
@@ -35,7 +43,7 @@ fun CharactersListItem(
             modifier = Modifier.fillMaxSize(),
         )
         Text(
-            text = text,
+            text = characterName,
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             modifier =

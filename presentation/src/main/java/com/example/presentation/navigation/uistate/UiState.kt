@@ -1,18 +1,14 @@
 package com.example.presentation.navigation.uistate
 
-import com.exmple.rickandmorty.GetCharactersQuery
-import domain.repository.Character
 
-sealed class UiState {
-    data object Empty : UiState()
+sealed class UiState<out T> {
+    object Loading : UiState<Nothing>()
 
-    data object Loading : UiState()
-
-    data class Success(
-        val data: List<Character>
-    ) : UiState()
+    data class Success<T>(
+        val data: T
+    ) : UiState<T>()
 
     data class Error(
-        val exception: String,
-    ) : UiState()
+        val exception: Exception
+    ) : UiState<Nothing>()
 }
