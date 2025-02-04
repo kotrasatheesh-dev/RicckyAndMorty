@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.benchmark.common)
     ksp(libs.dagger.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

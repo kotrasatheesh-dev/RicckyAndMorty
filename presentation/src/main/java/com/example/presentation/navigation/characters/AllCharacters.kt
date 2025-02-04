@@ -18,15 +18,14 @@ fun AllCharacters(
             onLoadCharacters()
         }
         is UiState.Error -> {
-            // Handle error state
         }
         is UiState.Loading -> {
             CircularProgressIndicator(modifier = modifier.size(100.dp))
         }
         is UiState.Success -> {
-            val charactersList = uiState.data // Assuming this is a List<GetCharactersQuery.Result>
-            CharactersList(
-                charactersList = charactersList // Pass the list directly
+            val charactersList = uiState.data
+            CharactersGridList(
+                charactersList = charactersList
             )
         }
         else -> Unit

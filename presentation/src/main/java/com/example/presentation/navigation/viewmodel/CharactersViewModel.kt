@@ -6,8 +6,6 @@ import com.example.presentation.navigation.uistate.UiState
 import domain.usecase.CharacterUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,12 +24,17 @@ constructor(
 
     fun fetchData() {
         viewModelScope.launch {
-            _charactersState.value = UiState.Loading
-            val characters = charactersUseCase.invokeCharacters()
-            if (characters.isNotEmpty()) {
-                _charactersState.value = UiState.Success(characters)
-            } else {
-                _charactersState.value = UiState.Error("No characters found")
+            try {
+                _charactersState.value = UiState.Loading
+                val characters = charactersUseCase.invokeCharacters()
+
+                _charactersState.value = if (characters.isNotEmpty()) {
+                    UiState.Success(characters)
+                } else {
+                    UiState.Empty
+                }
+            } catch (exception: Exception) {
+                _charactersState.value = UiState.Error(exception.localizedMessage ?: "Unknown error")
             }
         }
     }

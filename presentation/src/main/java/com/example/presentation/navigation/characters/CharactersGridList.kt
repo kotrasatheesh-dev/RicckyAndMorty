@@ -12,7 +12,7 @@ import domain.repository.Character
 
 
 @Composable
-fun CharactersList(
+fun CharactersGridList(
     charactersList: List<Character>,
     modifier: Modifier = Modifier
 ) {
@@ -23,9 +23,12 @@ fun CharactersList(
         horizontalArrangement = Arrangement.spacedBy(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        items(charactersList?.size ?: 0) { index ->
-            val item = charactersList?.get(index)
-            CharactersListItem(item?.image ?: "", item?.name ?: "")
+        items(charactersList.size) { index ->
+            val item = charactersList[index]
+            CharactersListItem(
+                imageUrl = item.image ?: "",
+                text = item.name ?: ""
+            )
         }
     }
 }
