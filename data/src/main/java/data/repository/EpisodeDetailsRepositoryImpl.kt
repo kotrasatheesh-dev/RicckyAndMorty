@@ -4,8 +4,11 @@ import com.apollographql.apollo.ApolloClient
 import com.exmple.rickandmorty.GetEpisodeDetailsByIdQuery
 import domain.mapper.EpisodeDetailsMapper
 import domain.repository.EpisodeDetailsRepository
+import javax.inject.Inject
 
-class EpisodeDetailsRepositoryImpl(private val apolloClient: ApolloClient) : EpisodeDetailsRepository {
+class EpisodeDetailsRepositoryImpl @Inject constructor(
+    private val apolloClient: ApolloClient
+) : EpisodeDetailsRepository {
     override suspend fun getEpisodeDetailsById(id: String): Result<EpisodeDetailsMapper> {
         return try {
             val response = apolloClient.query(GetEpisodeDetailsByIdQuery(id)).execute()
