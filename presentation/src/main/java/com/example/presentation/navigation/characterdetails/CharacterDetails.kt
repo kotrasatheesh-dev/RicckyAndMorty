@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -86,27 +87,51 @@ fun CharacterDetailItems(
     onEpisodeClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val painter = rememberAsyncImagePainter(item.image)
-
     Column(
-        modifier = modifier.padding(paddingValues)
+        modifier = modifier
+            .padding(paddingValues)
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        Image(
-            painter = painter,
-            contentDescription = "Grid Image",
-            contentScale = ContentScale.Crop,
+
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimensionResource(R.dimen.character_details_image_height)),
-        )
-        Column(
-            modifier = Modifier
-                .padding(start = dimensionResource(R.dimen.character_list_grid_spacing))
+                .padding(bottom = 16.dp),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
+            elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp)
         ) {
-            Text(text = item.name.orEmpty(), style = MaterialTheme.typography.headlineLarge)
-            CharacterStatus(item,onEpisodeClick)
+            Image(
+                painter = rememberAsyncImagePainter(item.image),
+                contentDescription = "Character Image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(320.dp)
+            )
         }
-        EpisodesList(item, onEpisodeClick)
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
+            elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = item.name.orEmpty(),
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+
+                CharacterStatus(item, onEpisodeClick)
+
+                EpisodesList(item, onEpisodeClick)
+            }
+        }
     }
 }
 
