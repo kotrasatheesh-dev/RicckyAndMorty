@@ -19,6 +19,8 @@
     fun CharactersList(
         charactersList: List<Character>,
         onNavigate: (String) -> Unit,
+        innerPadding: PaddingValues,
+
         modifier: Modifier = Modifier
 
 
@@ -26,12 +28,7 @@
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = modifier.fillMaxSize(),
-            contentPadding = PaddingValues(
-                start = 16.dp,
-                end = 16.dp,
-                top = 16.dp,
-                bottom = 16.dp
-            ),
+            contentPadding = innerPadding,
             horizontalArrangement = Arrangement.spacedBy(20.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {

@@ -35,7 +35,12 @@ fun AllCharacters(
         }
         is UiState.Success -> {
             val charactersList = uiState.data
-            CharactersList(charactersList, innerPadding,onNavigate)
+            CharactersList(
+                charactersList = charactersList,
+                innerPadding = innerPadding,
+                onNavigate = onNavigate,
+                modifier = modifier
+            )
         }
     }
 }
