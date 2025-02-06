@@ -18,7 +18,6 @@
     @Composable
     fun CharactersList(
         charactersList: List<Character>,
-        innerPadding: PaddingValues,
         onNavigate: (String) -> Unit,
         modifier: Modifier = Modifier
 
