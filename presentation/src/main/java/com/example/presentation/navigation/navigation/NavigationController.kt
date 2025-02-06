@@ -13,6 +13,9 @@ import com.example.presentation.navigation.MainScreen
 import com.example.presentation.navigation.viewmodel.CharacterDetailsViewModel
 import com.example.presentation.navigation.viewmodel.CharactersViewModel
 import common.module.helpers.NavigationRoutes
+import com.example.presentation.navigation.episodedetails.EpisodeDetails
+import com.example.presentation.navigation.viewmodel.EpisodeDetailsViewModel
+
 
 @Composable
 fun NavigationController(
@@ -36,7 +39,25 @@ fun NavigationController(
             val characterId = navBackStackEntry.arguments?.getString("CharacterId")
             val viewModel: CharacterDetailsViewModel = viewModel(factory = viewModelFactory)
             characterId?.let { viewModel.getCharacterDetails(it) }
-            CharacterDetails(viewModel.characterDetails)
+
+            CharacterDetails(
+                characterDetails = viewModel.characterDetails,
+                navigateToEpisodeDetails = { episodeId ->
+                    navController.navigate(NavigationRoutes.EpisodeDetails.createRoute(episodeId))
+                }
+            )
+        }
+        composable(
+            route = NavigationRoutes.EpisodeDetails.route,
+            arguments = listOf(navArgument("EpisodeId") { type = NavType.StringType })
+        ) { navBackStackEntry ->
+            val episodeId = navBackStackEntry.arguments?.getString("EpisodeId")
+            val viewModel: EpisodeDetailsViewModel = viewModel(factory = viewModelFactory)
+            episodeId?.let { viewModel.getEpisodeDetailsByUsingEpisodeId(it) }
+
+            EpisodeDetails(
+                episodeDetails = viewModel.episodeDetails
+            )
         }
     }
 }

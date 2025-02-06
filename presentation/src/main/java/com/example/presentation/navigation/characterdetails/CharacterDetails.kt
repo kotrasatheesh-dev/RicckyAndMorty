@@ -2,6 +2,7 @@ package com.example.presentation.navigation.characterdetails
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -41,7 +43,8 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 fun CharacterDetails(
     characterDetails: StateFlow<UiState<CharacterDetailsMapper>>,
-    modifier: Modifier = Modifier
+    navigateToEpisodeDetails: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val uiState = characterDetails.collectAsState().value
     when (uiState) {
@@ -59,19 +62,20 @@ fun CharacterDetails(
         }
 
         is UiState.Success -> {
-            CharacterDetailsScreen(uiState.data ,modifier)
+            CharacterDetailsScreen(uiState.data ,navigateToEpisodeDetails,modifier)
         }
     }
 }
 @Composable
 fun CharacterDetailsScreen(
     characterDetailsMapper: CharacterDetailsMapper,
+    navigateToEpisodeDetails: (String) -> Unit,
     modifier: Modifier = Modifier
 ){
     Scaffold(
         modifier = modifier.fillMaxSize(),
         content = { innerPadding ->
-            CharacterDetailItems(characterDetailsMapper,innerPadding)
+            CharacterDetailItems(characterDetailsMapper,innerPadding,navigateToEpisodeDetails)
         },
     )
 }
@@ -80,33 +84,63 @@ fun CharacterDetailsScreen(
 fun CharacterDetailItems(
     item: CharacterDetailsMapper,
     paddingValues: PaddingValues,
+    onEpisodeClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val painter = rememberAsyncImagePainter(item.image)
-
     Column(
-        modifier = modifier.padding(paddingValues)
+        modifier = modifier
+            .padding(paddingValues)
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        Image(
-            painter = painter,
-            contentDescription = "Grid Image",
-            contentScale = ContentScale.Crop,
+
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimensionResource(R.dimen.character_details_image_height)),
-        )
-        Column(
-            modifier = Modifier
-                .padding(start = dimensionResource(R.dimen.character_list_grid_spacing))
+                .padding(bottom = 16.dp),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
+            elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp)
         ) {
-            Text(text = item.name.orEmpty(), style = MaterialTheme.typography.headlineLarge)
-            CharacterStatus(item)
+            Image(
+                painter = rememberAsyncImagePainter(item.image),
+                contentDescription = "Character Image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(320.dp)
+            )
+        }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp),
+            elevation = androidx.compose.material3.CardDefaults.cardElevation(8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = item.name.orEmpty(),
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+
+                CharacterStatus(item, onEpisodeClick)
+
+                EpisodesList(item, onEpisodeClick)
+            }
         }
     }
 }
 
 @Composable
-fun CharacterStatus(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun CharacterStatus(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier.padding(top = dimensionResource(R.dimen.character_details_status_padding))
     ) {
@@ -118,13 +152,17 @@ fun CharacterStatus(item: CharacterDetailsMapper, modifier: Modifier = Modifier)
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.character_details_spacer)))
             CustomTextWithStyleMediumColorPrimary(text = item.status?.uppercase().orEmpty())
         }
-        CharacterSpecies(item)
+        CharacterSpecies(item,onEpisodeClick)
     }
 }
 
 
 @Composable
-fun CharacterSpecies(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun CharacterSpecies(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier.padding(top = dimensionResource(R.dimen.character_details_spacer))
     ) {
@@ -136,12 +174,16 @@ fun CharacterSpecies(item: CharacterDetailsMapper, modifier: Modifier = Modifier
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.character_details_spacer)))
             CustomTextWithStyleMediumColorPrimary(text = item.species?.uppercase().orEmpty())
         }
-        CharacterGender(item)
+        CharacterGender(item,onEpisodeClick)
     }
 }
 
 @Composable
-fun CharacterGender(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun CharacterGender(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier.padding(top = dimensionResource(R.dimen.character_details_spacer))
     ) {
@@ -153,13 +195,17 @@ fun CharacterGender(item: CharacterDetailsMapper, modifier: Modifier = Modifier)
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.character_details_spacer)))
             CustomTextWithStyleMediumColorPrimary(text = item.gender?.uppercase().orEmpty())
         }
-        CharacterOrigin(item)
+        CharacterOrigin(item,onEpisodeClick)
     }
 }
 
 
 @Composable
-fun CharacterOrigin(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun CharacterOrigin(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier.padding(top = dimensionResource(R.dimen.character_details_origin_spacer))
     ) {
@@ -178,13 +224,17 @@ fun CharacterOrigin(item: CharacterDetailsMapper, modifier: Modifier = Modifier)
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.character_details_spacer)))
             CustomTextWithStyleMediumColorPrimary(text = item.originName?.uppercase().orEmpty())
         }
-        CharacterOriginDimension(item)
+        CharacterOriginDimension(item,onEpisodeClick)
     }
 }
 
 
 @Composable
-fun CharacterOriginDimension(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun CharacterOriginDimension(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
     ) {
@@ -196,12 +246,16 @@ fun CharacterOriginDimension(item: CharacterDetailsMapper, modifier: Modifier = 
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.character_details_spacer)))
             CustomTextWithStyleMediumColorPrimary(text = item.originDimension?.uppercase().orEmpty())
         }
-        CharacterLocation(item)
+        CharacterLocation(item,onEpisodeClick)
     }
 }
 
 @Composable
-fun CharacterLocation(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun CharacterLocation(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(modifier = modifier) {
         Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.character_details_origin_spacer)))
         Text(text = stringResource(R.string.location), style = MaterialTheme.typography.titleLarge)
@@ -214,12 +268,16 @@ fun CharacterLocation(item: CharacterDetailsMapper, modifier: Modifier = Modifie
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.character_details_spacer)))
             CustomTextWithStyleMediumColorPrimary(text = item.locationName?.uppercase().orEmpty())
         }
-        CharacterLocationDimension(item)
+        CharacterLocationDimension(item,onEpisodeClick)
     }
 }
 
 @Composable
-fun CharacterLocationDimension(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun CharacterLocationDimension(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
     ) {
@@ -231,12 +289,16 @@ fun CharacterLocationDimension(item: CharacterDetailsMapper, modifier: Modifier 
             Spacer(modifier = Modifier.size(dimensionResource(R.dimen.character_details_spacer)))
             CustomTextWithStyleMediumColorPrimary(text = item.locationDimension?.uppercase().orEmpty())
         }
-        EpisodesList(item)
+        EpisodesList(item,onEpisodeClick)
     }
 }
 
 @Composable
-fun EpisodesList(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
+fun EpisodesList(
+    item: CharacterDetailsMapper,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     LazyRow(
         modifier = modifier,
         contentPadding = PaddingValues(dimensionResource(R.dimen.character_list_item_padding)),
@@ -246,17 +308,23 @@ fun EpisodesList(item: CharacterDetailsMapper, modifier: Modifier = Modifier) {
     ) {
         items(item.episodes?.size ?: 0) { index ->
             val episode = item.episodes?.get(index)
-            EpisodeListItem(episode, index)
+            EpisodeListItem(episode, index,onEpisodeClick)
         }
     }
 }
 
 @Composable
-fun EpisodeListItem(item: Character.Episode?, index: Int, modifier: Modifier = Modifier) {
+fun EpisodeListItem(
+    item: Character.Episode?,
+    index: Int,
+    onEpisodeClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Box(
         modifier = modifier
             .size(dimensionResource(R.dimen.episode_item_size))
             .background(color = colorResource(R.color.episode_background_color))
+            .clickable { item?.id?.let { onEpisodeClick(it) } }
     ) {
         Column(
             modifier = Modifier.matchParentSize(),

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.apollo)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -49,6 +50,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.coil.compose)
     implementation(libs.androidx.benchmark.common)
+    implementation(libs.kotlinx.serialization.json)
     implementation(project(":data"))
     ksp(libs.dagger.compiler)
     testImplementation(libs.junit)

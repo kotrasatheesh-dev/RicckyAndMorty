@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.presentation.navigation.viewmodel.CharacterDetailsViewModel
 import com.example.presentation.navigation.viewmodel.CharactersViewModel
+import com.example.presentation.navigation.viewmodel.EpisodeDetailsViewModel
 import com.rickyandmonty.ui.viewmodel.ViewModelFactoryProvider
 import dagger.Binds
 import dagger.Module
@@ -20,6 +21,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CharacterDetailsViewModel::class)
     abstract fun bindCharacterDetailsViewModel(myViewModel: CharacterDetailsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EpisodeDetailsViewModel::class)
+    abstract fun bindEpisodeDetailsViewModel(viewModel: EpisodeDetailsViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactoryProvider): ViewModelProvider.Factory

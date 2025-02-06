@@ -6,9 +6,12 @@ data class EpisodeDetailsMapper(
     val airDate: String? = "",
     val characters: List<Character>?
 ) {
+
     data class Character(
         val id: String = "",
         val name: String = "",
         val image: String = ""
     )
+
 }
+

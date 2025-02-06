@@ -5,11 +5,12 @@ import com.rickyandmonty.ui.module.ViewModelModule
 import com.rickyandmonty.ui.MainActivity
 import dagger.Component
 import data.di.CharacterModule
+import data.di.RepositoryModule
 import data.module.ApolloModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [CharacterModule::class, ViewModelModule::class, ApolloModule::class])
+@Component(modules = [CharacterModule::class, ViewModelModule::class, ApolloModule::class, RepositoryModule::class])
 interface AppComponent {
     fun inject(activity: MainActivity)
 
